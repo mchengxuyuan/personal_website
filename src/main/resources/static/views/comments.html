@@ -1,0 +1,81 @@
+
+<style>
+.criteria-form button {
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	background-color: #27EEEE;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+	font-size: 13px;
+	font-weight: 600;
+	color: #201AEE;
+}
+
+.criteria-form button:active {
+	background-color: #201AEE; /* Green */
+	color: #27EEEE;
+}
+
+.criteria-form button:hover {
+	background-color: #201AEE; /* Green */
+	color: #27EEEE;
+}
+
+.sortorder:after {
+	content: '\25b2';
+}
+
+.sortorder.reverse:after {
+	content: '\25bc';
+}
+
+</style>
+
+<form name="criteriaForm" class="criteria-form">
+			<td>
+				<button data-toggle="collapse" data-target="#addComments">
+					<i class="glyphicon glyphicon-plus"></i>&nbsp;  Leave your words
+				</button>
+			</td>
+	<table>
+		<tr>
+
+			<div id="addComments" class="collapse">
+				<div style="height: 80%; width: 100%">
+					<ng-include src="'views/addComments.html'"></ng-include>
+				</div>
+			</div>
+
+		</tr>
+	</table>
+</form>
+<div data-ng-controller="CommentsController">
+
+	<div class="col-sm-12" style="background-color: #E3E3F8;">
+
+
+		<table class="table table-striped"
+			ng-repeat="comment in comments | orderBy:'-time':reverse">
+			<tbody >
+				<tr>
+					<td><span class="label label-primary">{{ $index+1}}</span></td>
+					<td align="left" >NAME: {{ comment.name }}</td>
+					<td align="right" >TIME: {{ comment.time|date:'short' }}</td>
+				</tr>
+				<tr>
+					<td colspan='3'>{{ comment.comments }}</td>
+
+				</tr>
+			</tbody>
+
+		</table>
+
+
+
+
+	</div>
+
+
+
+
+
+</div>
